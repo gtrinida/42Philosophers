@@ -6,7 +6,7 @@
 /*   By: gtrinida <gtrinida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 22:40:29 by gtrinida          #+#    #+#             */
-/*   Updated: 2022/06/26 02:29:12 by gtrinida         ###   ########.fr       */
+/*   Updated: 2022/06/26 02:39:20 by gtrinida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ int	threads_init(t_basic *basic)
 		{
 			status |= pthread_create(&basic->philo[i].thread_id,
 					NULL, &philo, &basic->philo[i]);
+			usleep(200);
 		}
 	}
 	i = -1;
@@ -97,6 +98,7 @@ int	threads_init(t_basic *basic)
 		{
 			status |= pthread_create(&basic->philo[i].thread_id,
 					NULL, &philo, &basic->philo[i]);
+			usleep(200);
 		}
 	}
 	return (status);
