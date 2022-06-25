@@ -6,7 +6,7 @@
 /*   By: gtrinida <gtrinida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 22:40:37 by gtrinida          #+#    #+#             */
-/*   Updated: 2022/06/25 20:05:45 by gtrinida         ###   ########.fr       */
+/*   Updated: 2022/06/26 02:11:27 by gtrinida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,5 @@ void	ft_usleep(size_t milisec)
 
 	start_time = get_time();
 	while (get_time() - start_time < milisec)
-		usleep(50);
+		usleep(100);
 }

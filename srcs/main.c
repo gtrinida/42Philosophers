@@ -6,7 +6,7 @@
 /*   By: gtrinida <gtrinida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 22:40:05 by gtrinida          #+#    #+#             */
-/*   Updated: 2022/06/26 00:00:46 by gtrinida         ###   ########.fr       */
+/*   Updated: 2022/06/26 02:28:44 by gtrinida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ int	spectator(t_basic *basic)
 		if (time > basic->time_to_die)
 		{
 			pthread_mutex_lock(basic->philo[i].print);
-			usleep(500);
 			if (basic->philo[i].eat_counter > 0
 				|| basic->philo[i].eat_counter == -1)
 				printf("%d %d died\n", get_time()
