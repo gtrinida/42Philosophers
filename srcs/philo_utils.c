@@ -1,40 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   philo_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gtrinida <gtrinida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 22:40:37 by gtrinida          #+#    #+#             */
-/*   Updated: 2022/06/25 10:09:16 by gtrinida         ###   ########.fr       */
+/*   Updated: 2022/06/25 20:05:45 by gtrinida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int	ft_timestamp(void)
+int	get_time(void)
 {
+	size_t			milisec;
 	struct timeval	time;
-	size_t			milliseconds;
 
 	gettimeofday(&time, NULL);
-	milliseconds = time.tv_sec * 1000;
-	milliseconds += time.tv_usec / 1000;
-	return ((int) milliseconds);
+	milisec = time.tv_sec * 1000;
+	milisec += time.tv_usec / 1000;
+	return ((int) milisec);
 }
 
-void	ft_sleep(size_t milliseconds)
+void	ft_usleep(size_t milisec)
 {
 	size_t	start_time;
 
-	start_time = ft_timestamp();
-	while (ft_timestamp() - start_time < milliseconds)
+	start_time = get_time();
+	while (get_time() - start_time < milisec)
 		usleep(50);
-}
-
-int	ft_throw(const char *error, int code)
-{
-	printf("%s: ", PROGRAM_NAME);
-	printf("%s\n", error);
-	return (code);
 }

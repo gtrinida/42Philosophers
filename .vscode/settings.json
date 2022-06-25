@@ -1,7 +1,0 @@
-{
-    "files.associations": {
-        "ft_philosophers.h": "c",
-        "__threading_support": "c",
-        "mutex": "c"
-    }
-}
