@@ -6,7 +6,7 @@
 /*   By: gtrinida <gtrinida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 22:40:05 by gtrinida          #+#    #+#             */
-/*   Updated: 2022/06/25 13:35:50 by gtrinida         ###   ########.fr       */
+/*   Updated: 2022/06/25 14:29:42 by gtrinida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	destroy_threads(t_env *env)
 	i = 0;
 	while (i < env->n_philosophers)
 	{
-		pthread_detach(env->philosophers[i].thread_id);
 		pthread_mutex_destroy(env->philosophers->right_fork);
 		pthread_mutex_destroy(env->philosophers->left_fork);
 		i++;
