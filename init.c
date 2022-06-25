@@ -1,58 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_init.c                                          :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gtrinida <gtrinida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 22:40:11 by gtrinida          #+#    #+#             */
-/*   Updated: 2022/06/22 22:40:13 by gtrinida         ###   ########.fr       */
+/*   Updated: 2022/06/25 10:22:47 by gtrinida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_philosophers.h"
-
-int	ft_validation(int argc, char **argv)
+#include "philosophers.h"
+//проверочку на буквы ещё можно
+int	parser(int argc, char **argv)
 {
-	if (ft_atoi(argv[1]) < 0 || ft_atoi(argv[2]) < 0)
+	if (ft_atoi(argv[1]) <= 0 || ft_atoi(argv[2]) <= 0)
 		return (0);
-	if (ft_atoi(argv[3]) < 0 || ft_atoi(argv[4]) < 0)
+	if (ft_atoi(argv[3]) <= 0 || ft_atoi(argv[4]) <= 0)
 		return (0);
 	if (argc > 5 && ft_atoi(argv[5]) < 0)
 		return (0);
 	return (1);
 }
 
-int	ft_init(int argc, char **argv, t_env *env)
-{
-	if (!ft_validation(argc, argv))
-	{
-		free(env);
-		return (ft_throw(ERROR_ARGS, 0));
-	}
-	env->n_philosophers = ft_atoi(argv[1]);
-	if (!env->n_philosophers)
-	{
-		free(env);
-		return (0);
-	}
-	env->die_time = ft_atoi(argv[2]);
-	env->eat_time = ft_atoi(argv[3]);
-	env->sleep_time = ft_atoi(argv[4]);
-	if (argc < 6)
-		env->eat_count = -1;
-	else
-		env->eat_count = ft_atoi(argv[5]);
-	env->philosophers = malloc(sizeof(t_philosopher) * env->n_philosophers);
-	env->forks = malloc(sizeof(t_mutex) * env->n_philosophers);
-	env->print = malloc(sizeof(t_mutex));
-	if (!env->forks || !env->philosophers || !env->print)
-		return (ft_throw(ERROR_MALLOC, 0));
-	env->start_time = ft_timestamp();
-	return (1);
-}
-
-void	ft_init_philosophers(t_env *env)
+void	philo_init(t_env *env)
 {
 	int	i;
 
@@ -75,3 +46,35 @@ void	ft_init_philosophers(t_env *env)
 		env->philosophers[i].eat_counter = env->eat_count;
 	}
 }
+
+
+int	basic_init(int argc, char **argv, t_env *env)
+{
+	if (!parser(argc, argv))
+	{
+		free(env);
+		printf("Arguments isn't valid\n");
+		return (0);
+	}
+	env->n_philosophers = ft_atoi(argv[1]);
+	if (!env->n_philosophers)
+	{
+		free(env);
+		return (0);
+	}
+	env->die_time = ft_atoi(argv[2]);
+	env->eat_time = ft_atoi(argv[3]);
+	env->sleep_time = ft_atoi(argv[4]);
+	if (argc < 6)
+		env->eat_count = -1;
+	else
+		env->eat_count = ft_atoi(argv[5]);
+	env->philosophers = malloc(sizeof(t_philosopher) * env->n_philosophers);
+	env->forks = malloc(sizeof(t_mutex) * env->n_philosophers);
+	env->print = malloc(sizeof(t_mutex));
+	if (!env->forks || !env->philosophers || !env->print)
+		return (0);
+	env->start_time = ft_timestamp();
+	return (1);
+}
+

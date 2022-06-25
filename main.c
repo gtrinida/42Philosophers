@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_main.c                                          :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gtrinida <gtrinida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 22:40:05 by gtrinida          #+#    #+#             */
-/*   Updated: 2022/06/22 22:40:06 by gtrinida         ###   ########.fr       */
+/*   Updated: 2022/06/25 13:35:50 by gtrinida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
-#include "ft_philosophers.h"
+#include "philosophers.h"
 
-void	ft_threads_destroy(t_env *env)
+void	destroy_threads(t_env *env)
 {
 	int	i;
 
@@ -71,20 +71,23 @@ int	main(int argc, char **argv)
 	if (!env)
 		return (1);
 	if (argc < 5 || argc > 6)
-		return (ft_throw(ERROR_USAGE, 1));
-	if (!ft_init(argc, argv, env))
-		return (1);
-	ft_init_philosophers(env);
-	if (ft_init_threads(env) != 0)
 	{
-		ft_threads_destroy(env);
+		printf("Invalid number of arguments\n");
+		return (0);
+	}
+	if (!basic_init(argc, argv, env))
+		return (1);
+	philo_init(env);
+	if (threads_init(env) != 0)
+	{
+		destroy_threads(env);
 		return (ft_throw(ERROR_CREATE_THREAD, 1));
 	}
 	while (1)
 	{
 		if (!ft_observer(env))
 		{
-			ft_threads_destroy(env);
+			destroy_threads(env);
 			return (0);
 		}
 	}

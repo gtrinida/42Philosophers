@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_philosophers.h                                  :+:      :+:    :+:   */
+/*   philosophers.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gtrinida <gtrinida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 22:40:22 by gtrinida          #+#    #+#             */
-/*   Updated: 2022/06/23 06:08:32 by gtrinida         ###   ########.fr       */
+/*   Updated: 2022/06/25 13:33:00 by gtrinida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PHILOSOPHERS_H
-# define FT_PHILOSOPHERS_H
+#ifndef PHILOSOPHERS_H
+# define PHILOSOPHERS_H
 
 # include <unistd.h>
 # include <stdlib.h>
@@ -60,10 +60,10 @@ typedef struct s_env
 	t_mutex			*forks;
 }	t_env;
 
-// Initialization functions
-int		ft_init(int argc, char **argv, t_env *env);
-void	ft_init_philosophers(t_env *env);
-int		ft_init_threads(t_env *env);
+int		threads_init(t_env *env);
+int		basic_init(int argc, char **argv, t_env *env);
+void	philo_init(t_env *env);
+
 
 // Main functions
 

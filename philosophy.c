@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_philosophy.c                                    :+:      :+:    :+:   */
+/*   philosophy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gtrinida <gtrinida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 22:40:29 by gtrinida          #+#    #+#             */
-/*   Updated: 2022/06/23 00:34:33 by gtrinida         ###   ########.fr       */
+/*   Updated: 2022/06/25 13:34:07 by gtrinida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_philosophers.h"
+#include "philosophers.h"
 
 void	ft_take_forks(t_philosopher *philosopher)
 {
@@ -76,7 +76,7 @@ void	*ft_philosophy(void *ph_ptr)
 	return (0);
 }
 
-int	ft_init_threads(t_env *env)
+int	threads_init(t_env *env)
 {
 	int	i;
 	int	status;
