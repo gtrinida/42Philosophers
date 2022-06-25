@@ -6,7 +6,7 @@
 /*   By: gtrinida <gtrinida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 22:40:22 by gtrinida          #+#    #+#             */
-/*   Updated: 2022/06/25 20:04:35 by gtrinida         ###   ########.fr       */
+/*   Updated: 2022/06/25 23:55:15 by gtrinida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ typedef struct s_basic
 	t_mutex			*forks;
 }	t_basic;
 
-int		destroy_threads(t_basic *basic);
+int		destroy(t_basic *basic);
 int		get_time(void);
 int		ft_atoi(const char *str);
 int		threads_init(t_basic *basic);

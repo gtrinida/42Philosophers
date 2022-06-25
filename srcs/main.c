@@ -6,11 +6,37 @@
 /*   By: gtrinida <gtrinida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 22:40:05 by gtrinida          #+#    #+#             */
-/*   Updated: 2022/06/25 20:05:08 by gtrinida         ###   ########.fr       */
+/*   Updated: 2022/06/26 00:00:46 by gtrinida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
+
+int	destroy(t_basic *basic)
+{
+	int	i;
+
+	i = 0;
+	while (i < basic->n_philo)
+	{
+		pthread_detach(basic->philo[i].thread_id);
+		pthread_mutex_destroy(basic->philo->right_fork);
+		pthread_mutex_destroy(basic->philo->left_fork);
+		i++;
+	}
+	i = 0;
+	while (i < basic->n_philo)
+	{
+		pthread_mutex_destroy(&basic->forks[i]);
+		i++;
+	}
+	pthread_mutex_destroy(basic->print);
+	free(basic->print);
+	free(basic->philo);
+	free(basic->forks);
+	free(basic);
+	return (0);
+}
 
 int	spectator(t_basic *basic)
 {
@@ -54,12 +80,12 @@ int	main(int argc, char **argv)
 	philo_init(basic);
 	if (threads_init(basic) != 0)
 	{
-		destroy_threads(basic);
+		destroy(basic);
 		return (0);
 	}
 	while (1)
 	{
 		if (!spectator(basic))
-			return (destroy_threads(basic));
+			return (destroy(basic));
 	}
 }
