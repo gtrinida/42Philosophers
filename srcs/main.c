@@ -6,7 +6,7 @@
 /*   By: gtrinida <gtrinida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 22:40:05 by gtrinida          #+#    #+#             */
-/*   Updated: 2022/06/26 02:40:56 by gtrinida         ###   ########.fr       */
+/*   Updated: 2022/06/26 03:18:41 by gtrinida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int	destroy(t_basic *basic)
 	i = 0;
 	while (i < basic->n_philo)
 	{
-		pthread_detach(basic->philo[i].thread_id);
 		pthread_mutex_destroy(basic->philo->right_fork);
 		pthread_mutex_destroy(basic->philo->left_fork);
 		i++;
@@ -52,6 +51,7 @@ int	spectator(t_basic *basic)
 		if (time > basic->time_to_die)
 		{
 			pthread_mutex_lock(basic->philo[i].print);
+			usleep(100);
 			if (basic->philo[i].eat_counter > 0
 				|| basic->philo[i].eat_counter == -1)
 				printf("%d %d died\n", get_time()
